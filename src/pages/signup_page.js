@@ -2,6 +2,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const SignUpPage = () => {
   let [password, setPassword] = useState("");
@@ -9,6 +10,16 @@ const SignUpPage = () => {
   const submit_credentials = () => {
     console.log({ username });
     console.log({ password });
+  };
+  const signUp = () => {
+    axios
+      .post("http://localhost:3000/auth/sign-up", {
+        username: username,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
   return (
     <Container>
@@ -30,7 +41,7 @@ const SignUpPage = () => {
             onChange={(e) => setPassword((password = e.target.value))}
           ></Form.Control>
         </Form.Group>
-        <Button onClick={submit_credentials}>Log In</Button>
+        <Button onClick={signUp()}>Log In</Button>
       </Form>
     </Container>
   );

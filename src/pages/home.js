@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { TweetCard } from "./components/tweetCard";
 import axios from "axios";
+import Row from "react-bootstrap/Row";
 
 const Homepage = () => {
   let [newTweet, setNewTweet] = useState("");
@@ -37,9 +38,18 @@ const Homepage = () => {
       <Form>
         <Form.Control
           as="textarea"
+          rows={"3"}
           onChange={(e) => setNewTweet((newTweet = e.target.value))}
         ></Form.Control>
-        <Button onClick={createTweet}>Tweet</Button>
+        <Row className="d-flex justify-content-end">
+          <Button
+            onClick={createTweet}
+            style={{ width: "10%" }}
+            className="m-1 me-3"
+          >
+            Tweet
+          </Button>
+        </Row>
       </Form>
       <Col>
         {tweetList.map((tweet) => (
